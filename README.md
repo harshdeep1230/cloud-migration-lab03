@@ -10,22 +10,31 @@
 ---
 
 ## 1. Objective
-This project analyzes the transition of a mid-sized retail company from a legacy on-premises infrastructure to a modern cloud environment. The goal is to compare **IaaS**, **PaaS**, and **SaaS** models and determine the most efficient migration path for various business components.
+This project evaluates the migration of an existing mid-sized retail firm off-premises on an old infrastructure to a new cloud infrastructure. It is aimed at comparing models of IaaS, PaaS, and SaaS and choosing the most effective path of migration of different business elements.
 
 ---
 
 ## 2. Section 1: On-Premises Solution Design
 
 ### Current Architecture Overview
-The retail company currently operates a **monolithic architecture**. All services are hosted on physical hardware within the company's data center.
+The retail company has **monolithic architecture**. All services are hosted on the company's data center
 
+```mermaid
+graph TD
+    subgraph "(On-Premises)"
+    User((Retail Customer)) --> Router[Hardware Router & Firewall]
+    Router --> WebServer[Monolithic Web Application - Physical Server]
+    WebServer --> DB[(SQL Server - Physical Node)]
+    WebServer --> NAS[Local File System - NAS Storage]
+    WebServer --> Mail[Local SMTP Relay Server]
+    end
+```
 
-
-* **Web Application:** A single-tier monolithic app hosted on physical Windows servers.
-* **Backend Database:** SQL Server running on a dedicated physical machine.
-* **File Storage:** Local Network Attached Storage (NAS) for product images and documents.
-* **Networking:** Managed via physical Cisco routers and hardware-based firewalls.
-* **Email Services:** An on-premises SMTP server used for sending customer order confirmations.
+* **Web Application:** A single-tier monolithic app hosted on physical Windows servers
+* **Backend Database:** SQL Server running on a dedicated physical machine
+* **File Storage:** Local Network Attached Storage (NAS) for product images and documents
+* **Networking:** Managed routers and hardware-based firewalls
+* **Email Services:** An on-premises SMTP server used for sending customer order confirmations
 
 ### Component Identification for Migration
 | Component | Current State | Target Cloud Model |
@@ -69,20 +78,20 @@ graph LR
 ### Proposed Strategy for Each Component
 
 1.  **Web Application → PaaS (Refactoring)**
-    * *Decision:* Move to a managed service like Azure App Service or AWS Elastic Beanstalk.
-    * *Reasoning:* Removes the need to manage the OS or hardware. Allows for **Auto-scaling** during high-traffic retail events.
+    * *Decision:* Move to a managed service like Azure App Service or AWS Elastic Beanstalk
+    * *Reasoning:* Removes the need to manage the OS or hardware. Allows for **Auto-scaling** during high-traffic retail event
 2.  **Database → PaaS (Replatforming)**
-    * *Decision:* Migrate SQL Server to a managed instance (e.g., Amazon RDS).
-    * *Reasoning:* Automates backups, patching, and high availability without changing the database engine.
+    * *Decision:* Migrate SQL Server to a managed instance (e.g., Amazon RDS)
+    * *Reasoning:* Automates backups, patching high availability without changing the database engine
 3.  **File Storage → PaaS (Replatforming)**
-    * *Decision:* Move local files to Cloud Object Storage (e.g., AWS S3).
-    * *Reasoning:* Offers 99.999999999% durability and makes images easily accessible via Content Delivery Networks (CDNs).
+    * *Decision:* Move local files to Cloud Object Storage (e.g., AWS S3)
+    * *Reasoning:* Offer 99% durability and makes images easily accessible via Content Delivery Networks 
 4.  **Networking → Cloud-Native Networking**
-    * *Decision:* Re-architect using Virtual Private Clouds (VPC), Subnets, and Security Groups.
-    * *Reasoning:* Replaces physical firewalls with software-defined security that is easier to update.
+    * *Decision:* Re-architect using Virtual Private Clouds (VPC), Subnets, and Security Groups
+    * *Reasoning:* Replaces physical firewalls with software-defined security that is easier to update
 5.  **Email Service → SaaS (Replacing)**
-    * *Decision:* Replace the local SMTP server with a SaaS provider like SendGrid or Microsoft 365.
-    * *Reasoning:* Eliminates the difficulty of maintaining email server reputation and hardware.
+    * *Decision:* Replace the local SMTP server with a SaaS provider like SendGrid or Microsoft 365
+    * *Reasoning:* Eliminates the difficulty of maintaining email server reputation and hardware
 
 ---
 
@@ -99,9 +108,5 @@ graph LR
 ---
 
 ## 5. Conclusion
-Moving from an on-premises retail environment to the cloud provides the company with **elasticity** and **cost-efficiency**. By prioritizing **PaaS** for the web and database layers, the company can shift its focus from "maintaining hardware" to "improving the retail experience." 
+Moving from an on-premises retail environment to the cloud provides the company with **elasticity** and **cost-efficiency**
 
----
-**Course:** Cloud Migration Lab  
-**Date:** 2026  
-**Repository:** [Link to your GitHub Repo]
