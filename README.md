@@ -78,20 +78,20 @@ graph LR
 ### Proposed Strategy for Each Component
 
 1.  **Web Application → PaaS (Refactoring)**
-    * *Decision:* Move to a managed service like Azure App Service or AWS Elastic Beanstalk
-    * *Reasoning:* Removes the need to manage the OS or hardware. Allows for **Auto-scaling** during high-traffic retail event
+    * *Decision:* Move to a managed service like Azure App Service/ AWS Elastic Beanstalk
+    * *Reasoning:* Removes the need to manage the OS or hardware. Allows for **Auto-scaling** for high-traffic 
 2.  **Database → PaaS (Replatforming)**
-    * *Decision:* Migrate SQL Server to a managed instance (e.g., Amazon RDS)
+    * *Decision:* managed instance (e.g., Amazon RDS)
     * *Reasoning:* Automates backups, patching high availability without changing the database engine
 3.  **File Storage → PaaS (Replatforming)**
-    * *Decision:* Move local files to Cloud Object Storage (e.g., AWS S3)
-    * *Reasoning:* Offer 99% durability and makes images easily accessible via Content Delivery Networks 
+    * *Decision:*  Cloud Object Storage (e.g., AWS S3)
+    * *Reasoning:* Offer 99% durability and makes images easily accessible  
 4.  **Networking → Cloud-Native Networking**
     * *Decision:* Re-architect using Virtual Private Clouds (VPC), Subnets, and Security Groups
     * *Reasoning:* Replaces physical firewalls with software-defined security that is easier to update
 5.  **Email Service → SaaS (Replacing)**
-    * *Decision:* Replace the local SMTP server with a SaaS provider like SendGrid or Microsoft 365
-    * *Reasoning:* Eliminates the difficulty of maintaining email server reputation and hardware
+    * *Decision:* Replace the local SMTP server with a SaaS provider
+    * *Reasoning:* Eliminates the difficulty of maintaining email server 
 
 ---
 
